@@ -41,23 +41,10 @@ AI-persona/
 ### 環境変数設定
 
 #### フロントエンド (`frontend/.env.local`) 
-```env
-NEXT_PUBLIC_FIREBASE_API_KEY=AIzaSyBGMyKfOCt5zHFr4Vxa1KHuzMZao00GZMc
-NEXT_PUBLIC_FIREBASE_AUTH_DOMAIN=ai-persona-917ff.firebaseapp.com
-NEXT_PUBLIC_FIREBASE_PROJECT_ID=ai-persona-917ff
-NEXT_PUBLIC_FIREBASE_STORAGE_BUCKET=ai-persona-917ff.firebasestorage.app
-NEXT_PUBLIC_FIREBASE_MESSAGING_SENDER_ID=724840376313
-NEXT_PUBLIC_FIREBASE_APP_ID=1:724840376313:web:ff47c35cf93597497bbf28
-NEXT_PUBLIC_FIREBASE_MEASUREMENT_ID=G-F8T4RZNZKS
-NEXT_PUBLIC_API_URL=http://localhost:3001
-```
+
 
 #### バックエンド (`backend/.env`)
-```env
-NODE_ENV=development
-PORT=3001
-FIREBASE_PROJECT_ID=ai-persona-917ff
-```
+
 
 ## セットアップ手順
 
