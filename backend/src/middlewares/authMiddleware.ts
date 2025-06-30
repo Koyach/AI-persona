@@ -31,6 +31,9 @@ export const verifyIdToken = async (
 
     // Authorization ヘッダーの存在チェック
     if (!authHeader) {
+      // CORSヘッダーを設定してからエラーレスポンスを返す
+      res.header('Access-Control-Allow-Origin', req.headers.origin || '*');
+      res.header('Access-Control-Allow-Credentials', 'true');
       res.status(401).json({
         error: 'Authorization header is missing',
         code: 'auth/missing-auth-header',
@@ -41,6 +44,9 @@ export const verifyIdToken = async (
     // Bearer トークンの形式チェック
     const token = authHeader.split(' ')[1];
     if (!token || !authHeader.startsWith('Bearer ')) {
+      // CORSヘッダーを設定してからエラーレスポンスを返す
+      res.header('Access-Control-Allow-Origin', req.headers.origin || '*');
+      res.header('Access-Control-Allow-Credentials', 'true');
       res.status(401).json({
         error: 'Invalid authorization header format. Expected: Bearer <token>',
         code: 'auth/invalid-auth-header',
@@ -57,6 +63,9 @@ export const verifyIdToken = async (
         expected: config.firebase.projectId,
         received: decodedToken.aud,
       });
+      // CORSヘッダーを設定してからエラーレスポンスを返す
+      res.header('Access-Control-Allow-Origin', req.headers.origin || '*');
+      res.header('Access-Control-Allow-Credentials', 'true');
       res.status(401).json({
         error: 'Firebase project ID mismatch. Make sure both frontend and backend are using the same Firebase project.',
         code: 'auth/project-id-mismatch',
@@ -112,6 +121,9 @@ export const verifyIdToken = async (
       }
     }
 
+    // CORSヘッダーを設定してからエラーレスポンスを返す
+    res.header('Access-Control-Allow-Origin', req.headers.origin || '*');
+    res.header('Access-Control-Allow-Credentials', 'true');
     res.status(401).json({
       error: errorMessage,
       code: errorCode,
