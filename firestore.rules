@@ -1,0 +1,21 @@
+rules_version = '2';
+
+service cloud.firestore {
+  match /databases/{database}/documents {
+    // personas コレクション: ユーザーは自分のペルソナのみアクセス可能
+    match /personas/{personaId} {
+      // ドキュメントの userId フィールドが認証済みユーザーの uid と一致する場合のみアクセス許可
+      allow read, write: if request.auth != null && 
+                           request.auth.uid == resource.data.userId;
+      
+      // 新規作成時: リクエストデータの userId が認証済みユーザーの uid と一致する場合のみ許可
+      allow create: if request.auth != null && 
+                      request.auth.uid == request.resource.data.userId;
+    }
+    
+    // デフォルトルール: その他のコレクションは拒否
+    match /{document=**} {
+      allow read, write: if false;
+    }
+  }
+} 
