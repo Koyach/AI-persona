@@ -6,7 +6,7 @@ import { ApiResponse, ERROR_CODES } from '../types/common';
 export const schemas = {
   createPersona: Joi.object({
     name: Joi.string().trim().min(1).max(100).required(),
-    description: Joi.string().trim().min(1).max(500).required(),
+    description: Joi.string().trim().min(1).max(4000).required(),
     characteristics: Joi.array().items(Joi.string().trim().min(1).max(100)).optional(),
   }),
 
